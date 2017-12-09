@@ -1,6 +1,6 @@
-<h1>Proteus Tiles API</h1>
-<hr/>
+#Proteus Tiles API</h1>
+______
 
-<h4>Steps to run locally:</h4>
+####Steps to run locally:
 - run 'npm install'
 - crush it
