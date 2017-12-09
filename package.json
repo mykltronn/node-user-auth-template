@@ -1,0 +1,16 @@
+{
+  "name": "proteus_api",
+  "version": "1.0.0",
+  "description": "api to serve proteus resources",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/michaelashton/proteus-api.git"
+  },
+  "author": "mykltronn",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/michaelashton/proteus-api#readme"
+}
