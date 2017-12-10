@@ -1,7 +1,16 @@
-const pg = require('pg');
-const winston = require('../config/logger').winston;
+const pg = require('pg')
+const config = require('../config')
+const winston = require('winston')
 
-const dbConfig = process.env.DATABASE_URL || 'postgres://mykltronn:null@localhost/proteus-dev';
+const dbConfig = {
+  user: config.db.user,
+  password: config.db.password,
+  database: config.db.database,
+  host: config.db.host,
+  port: config.db.port,
+  max: config.db.max,
+  idleTimeoutMillis: config.db.idleTimeoutMillis,
+}
 
 const pool = new pg.Pool(dbConfig)
 pool.on('error', function (err) {
@@ -9,6 +18,7 @@ pool.on('error', function (err) {
 })
 
 module.exports = {
+  pool,
   query: (text, params, callback) => {
     return pool.query(text, params, callback)
   }
