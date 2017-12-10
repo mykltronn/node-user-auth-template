@@ -2,12 +2,15 @@
 ______
 
 ####Steps to run locally:
-- run 'npm install'
+- npm install
 - touch ./config/env/development.js
-- 
- . 
- ├── test |   
-      └── setup.spec.js ├── product |   ├── index.js |   ├── product.js |   ├── product.spec.js |   └── product.hbs ├── user |   ├── index.js |   ├── user.js |   ├── user.spec.js |   └── user.hbs
+- add to development.js:
+```javascript
+module.exports = {
+  db: 'postgres://username:password@localhost/db-name',
+  session_secret: '',
+}
+```
 - crush it
 
 ####For PROD, the following config/environment variables need to be set:
