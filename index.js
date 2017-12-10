@@ -7,7 +7,7 @@ const port = process.env.PORT || 8000
 const app = express()
 
 require('./config/passport')(passport, db)
-require('./config/express')(app, passport, db.pool)
+require('./config/express')(app, passport, db)
 require('./config/routes')(app, passport, db)
 
 const server = app.listen(port, () => {

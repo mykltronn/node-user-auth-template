@@ -1,0 +1,15 @@
+{
+  "development": {
+    "username": "mykltronn",
+    "password": null,
+    "database": "proteus-dev",
+    "host": "127.0.0.1",
+    "dialect": "postgresql"
+  },
+  "test": {
+    "use_env_variable": "DATABASE_URL"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL"
+  }
+}

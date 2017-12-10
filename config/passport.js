@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const winston = require('winston')
 const LocalStrategy = require('passport-local').Strategy
 
-module.exports = (passport, db) => {
+module.exports = (passport, db) => { // change db.query to something like Models.Users or sommit
   passport.use(new LocalStrategy((username, password, cb) => {
     db.query('SELECT id, username, password, type FROM users WHERE username=$1', [username], (err, result) => {
       if (err) {

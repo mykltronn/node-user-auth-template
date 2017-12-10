@@ -4,7 +4,7 @@ ______
 ####Steps to run locally:
 - npm install
 - touch ./config/env/development.js
-- add to development.js:
+- write to development.js:
 ```javascript
 module.exports = {
   db: 'postgres://username:password@localhost/db-name',

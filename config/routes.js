@@ -1,5 +1,4 @@
 const winston = require('winston')
-const { requiresLogin, requiresAdmin } = require('./middlewares/authorization')
 const authentication = require('../api/authentication')
 const users = require('../app/users')
 const monitoring = require('../app/monitoring')
