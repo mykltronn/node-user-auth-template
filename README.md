@@ -1,4 +1,4 @@
-#Proteus Tiles API</h1>
+#Proteus Tiles API
 ______
 
 ####Steps to run locally:
