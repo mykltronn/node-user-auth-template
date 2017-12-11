@@ -19,7 +19,7 @@ const server = app.listen(port, () => {
 server.on('close', () => {
   winston.log('Closed express server')
 
-  db.pool.end(() => {
+  db.close().then(() => {
     winston.log('Shut down connection pool')
-  })
+  });
 })
