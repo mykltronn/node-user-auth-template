@@ -1,5 +1,5 @@
 const morgan = require('morgan'),
-      winston = require('winston');
+      logger = require('winston');
 
 const level = process.env.LOG_LEVEL || 'debug';
 
@@ -16,9 +16,9 @@ const log = morgan('dev', {
 });
 
 
-const winston = new winston.Logger({
+const winston = new logger.Logger({
   transports: [
-    new winston.transports.Console({
+    new logger.transports.Console({
       level: level,
       timestamp: function () {
         return (new Date()).toISOString();

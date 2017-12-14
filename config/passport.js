@@ -1,21 +1,28 @@
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 const winston = require('winston');
 const LocalStrategy = require('passport-local').Strategy;
 
-module.exports = (passport, Model) => {
+module.exports = (db) => {
   passport.use(new LocalStrategy((username, password, done) => {
-    Model.User.findOne({
+    db.User.findOne({
       where: {
         'username': username
       }
-    }).then(user => {
+    }).then(response => {
+      const user = response.dataValues;
+      console.log('user is: ', user);
       if (user == null) {
         return done(null, false, { message: 'Incorrect credentials.' })
       }
+      console.log('password const is: ', password);
+      console.log('user.password is: ', user.password);
+      const isMatch = bcrypt.compareSync(password, user.password);
+      console.log('password match?', isMatch);
+      // const hashedPassword = bcrypt.hashSync(password, salt)
         
-      var hashedPassword = bcrypt.hashSync(password, user.salt)
-        
-      if (user.password === hashedPassword) {
+      if (isMatch) {
+        console.log('IS MATCH, SON')
         return done(null, user)
       }
         
@@ -24,16 +31,22 @@ module.exports = (passport, Model) => {
   }));
 
   passport.serializeUser((user, done) => {
+    console.log('trying to deserialize user with user: ', user)
     done(null, user.id)
-  });
+  })
 
-  passport.deserializeUser((id, cb) => {
-    Model.User.findOne({
+  passport.deserializeUser((id, done) => {
+    console.log('trying to deserialize user with id: ', id)
+    db.User.findOne({
       where: {
         'id': id
       }
-    }).then(results) => {
-      cb(null, results.rows[0])
+    }).then(user => {
+      if (user == null) {
+        done(winston.error('Wrong user id.'))
+      }
+      
+      done(null, user)
     })
-  });
+  })
 }

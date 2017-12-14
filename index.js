@@ -6,13 +6,13 @@ const db = require('./database')
 const port = process.env.PORT || 8000
 const app = express()
 
-require('./config/passport')(passport, db)
+require('./config/passport')(db)
 require('./config/express')(app, passport, db)
 require('./config/routes')(app, passport, db)
 
 const server = app.listen(port, () => {
   // if (app.get('env') === 'test') return
-
+  console.log('Express app started on port ', port)
   winston.log('Express app started on port ' + port)
 })
 
